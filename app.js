@@ -3,16 +3,12 @@ angular.module('learndigest', []);
 
 // Declare controller, inject scope variable in controller
 angular.module('learndigest').controller('PlaygroundCtrl', function ($scope) {
-    //Create a new object vm,
-    // vm stores all other variables we need in addition to this scope
     var vm = this;
 
-    //Bind vm to scope, playground is a variable
-    //This line can be removed and a special syntax can be added in ng-controller (PlaygroundCtrl as playground)
-    //$scope.playground = vm;
+    //Adding new variable to use ng-if statement
+    vm.enableForceEdit = true;
 
     //Add new attribute on scope
-    //Now, $scope can be changed to vm
     vm.force = 30;
 
     //Add function to reset force to 0

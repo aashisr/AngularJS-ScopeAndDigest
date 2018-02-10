@@ -17,19 +17,14 @@
                 Hello force {{ vm.force }}
             </div>
 
-            <!--Bind variable in input field-->
-            <input type="number" ng-model="vm.force">
+            <div ng-if="vm.enableForceEdit">
+                <!--Bind variable in input field-->
+                <input type="number" ng-model="vm.force">
+            </div>
 
             <!--Button to reset input field to 0-->
             <button type="button" ng-click="vm.resetForce()">Reset</button>
 
-            <!--Another controller within Playground controller-->
-            <div ng-controller="InternalCtrl as vm">
-                <div>The secret is: {{ vm.secret }}</div>
-                <!--Force defined in PlaygroundCtrl can be used here as well-->
-                <div>The internal force is {{ vm.playground.force }}</div>
-                <input type="number" ng-model="vm.playground.force">
-            </div>
         </div>
     </body>
 </html>
