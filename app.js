@@ -12,3 +12,12 @@ angular.module('learndigest').controller('PlaygroundCtrl', function ($scope) {
     }
 });
 
+
+//Declare new controller
+//If InternalCtrl div is defined inside PlaygroundCtrl div in index.html,
+//Scope of the Playground controller is parent of the scope of Internal controller
+//Scope in internal controller has access to variables defined in scope of Playground controller
+//Variables in InternalCtrl can not be accessed in PlaygroundCtrl
+angular.module('learndigest').controller('InternalCtrl', function ($scope) {
+    $scope.secret = "shhhh" + $scope.force;
+});

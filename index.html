@@ -17,11 +17,22 @@
                 Hello force {{ force }}
             </div>
 
+            <!--PlaygroundCtrl does not have access to secret variable in InternalCtrl,
+          this does not output the value of secret-->
+            <div>The secret is: {{ secret }}</div>
+
             <!--Bind variable in input field-->
             <input type="number" ng-model="force">
 
             <!--Button to reset input field to 0-->
             <button type="button" ng-click="resetForce()">Reset</button>
+
+            <!--Another controller within Playground controller-->
+            <div ng-controller="InternalCtrl">
+                <div>The secret is: {{ secret }}</div>
+                <!--Force defined in PlaygroundCtrl can be used here as well-->
+                <div>The internal force is {{ force }}</div>
+            </div>
         </div>
     </body>
 </html>
