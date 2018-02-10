@@ -12,7 +12,16 @@
     <body ng-app = "learndigest">
         <!--Initialise controller-->
         <div ng-controller="PlaygroundCtrl">
-            I love angualar
+            <div>
+                <!--Bind variable from app.js-->
+                Hello force {{ force }}
+            </div>
+
+            <!--Bind variable in input field-->
+            <input type="number" ng-model="force">
+
+            <!--Button to reset input field to 0-->
+            <button type="button" ng-click="resetForce()">Reset</button>
         </div>
     </body>
 </html>
