@@ -11,28 +11,24 @@
     <!--Declared ng-app-->
     <body ng-app = "learndigest">
         <!--Initialise controller-->
-        <div ng-controller="PlaygroundCtrl as playground">
+        <div ng-controller="PlaygroundCtrl as vm">
             <div>
                 <!--Bind variable from app.js-->
-                Hello force {{ playground.force }}
+                Hello force {{ vm.force }}
             </div>
 
-            <!--PlaygroundCtrl does not have access to secret variable in InternalCtrl,
-          this does not output the value of secret-->
-            <div>The secret is: {{ secret }}</div>
-
             <!--Bind variable in input field-->
-            <input type="number" ng-model="playground.force">
+            <input type="number" ng-model="vm.force">
 
             <!--Button to reset input field to 0-->
-            <button type="button" ng-click="playground.resetForce()">Reset</button>
+            <button type="button" ng-click="vm.resetForce()">Reset</button>
 
             <!--Another controller within Playground controller-->
-            <div ng-controller="InternalCtrl">
-                <div>The secret is: {{ secret }}</div>
+            <div ng-controller="InternalCtrl as vm">
+                <div>The secret is: {{ vm.secret }}</div>
                 <!--Force defined in PlaygroundCtrl can be used here as well-->
-                <div>The internal force is {{ playground.force }}</div>
-                <input type="number" ng-model="playground.force">
+                <div>The internal force is {{ vm.playground.force }}</div>
+                <input type="number" ng-model="vm.playground.force">
             </div>
         </div>
     </body>

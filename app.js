@@ -30,5 +30,11 @@ angular.module('learndigest').controller('PlaygroundCtrl', function ($scope) {
 
 //Now, scope in this InternalCtrl have access only to the playground variable
 angular.module('learndigest').controller('InternalCtrl', function ($scope) {
-    $scope.secret = "shhhh" + $scope.playground.force;
+    var vm = this;
+
+    //Add access to parent controller, playground is a variable
+    vm.playground = $scope.$parent.vm;
+
+    //Access to force variable from playground controller
+    vm.secret = "shhhh" + vm.playground.force;
 });
