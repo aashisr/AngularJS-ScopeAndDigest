@@ -22,6 +22,14 @@ angular.module('learndigest').controller('PlaygroundCtrl', function ($scope) {
     $scope.$watch('vm.force', function (newValue, oldValue) {
         console.log('Force value has changed', vm.force, newValue, oldValue);
     })
+
+    //Function that returns a value can be watched as well
+    //Function to watch if the force is even or odd
+    //Prints in console only when value has changed or in this case when even changes to odd  or vice-versa
+    $scope.$watch(function() { return vm.force % 2 === 0; }, function (newValue, oldValue) {
+        //If force is even, return even, if not return odd
+        console.log(newValue ? 'force is even' : 'force is odd');
+    })
 });
 
 
