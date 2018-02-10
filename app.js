@@ -15,6 +15,13 @@ angular.module('learndigest').controller('PlaygroundCtrl', function ($scope) {
     vm.resetForce = function () {
         vm.force = 0;
     }
+
+    //Add a watch statement
+    //First argument is a string which represents an expression expression we want to watch
+    //Second argument will be a function that will run whenever the value of first argument changes
+    $scope.$watch('vm.force', function (newValue, oldValue) {
+        console.log('Force value has changed', vm.force, newValue, oldValue);
+    })
 });
 
 
