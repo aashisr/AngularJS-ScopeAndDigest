@@ -14,19 +14,22 @@
         <div ng-controller="PlaygroundCtrl as vm">
             <div>
                 <!--Bind variable from app.js-->
-                Hello force {{ vm.userProperties.force }}
+                Hello force {{ vm.force }}
             </div>
 
-            <!--Bind the contents of the div to vm.force-->
-            <div ng-bind="vm.userProperties.force"></div>
-
-            <div ng-if="vm.enableForceEdit">
-                <!--Bind variable in input field-->
-                <input type="number" ng-model="vm.userProperties.force">
-            </div>
+            <!--Bind variable in input field-->
+            <input type="number" ng-model="vm.force">
 
             <!--Button to reset input field to 0-->
             <button type="button" ng-click="vm.resetForce()">Reset</button>
+
+            <!--Using ng-if for if force is even-->
+            <!--If the force is odd, watcher does not watch this, that is to say internal controller is not executed-->
+            <div ng-if="vm.force % 2 == 0">
+                <div ng-controller="InternalCtrl as vm">
+                    The internal controller has arrived!
+                </div>
+            </div>
 
         </div>
     </body>

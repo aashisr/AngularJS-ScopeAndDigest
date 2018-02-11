@@ -6,32 +6,17 @@ angular.module('learndigest').controller('PlaygroundCtrl', function ($scope) {
     var vm = this;
 
     //Create new object userProperties to watch this object
-    vm.userProperties = {
-        favoriteColor: 'white',
-        nickname: 'aashis',
-        force: 30
-    };
-
-    //Adding new variable to use ng-if statement
-    vm.enableForceEdit = true;
+    vm.force = 30;
 
     //Add new attribute on scope
-    //Update force to use userProperties force
-    vm.userProperties.force = 30;
+    vm.force = 30;
 
     //Add function to reset force to 0
     //Now, change whole of user properties object so as to deep watch
     vm.resetForce = function () {
-        vm.userProperties.force = 0;
+        vm.force = 0;
     }
 
-
-    //Deep watch whole vm.userProperties object
-    //Third argument 'true'  tells angular that this watch is a deep watch
-    //That means if any property on the vm.userProperties is changed, it prints the changed value in console
-    $scope.$watch('vm.userProperties', function () {
-        console.log('User properties changed:', vm.userProperties)
-    }, true);
 });
 
 
@@ -48,6 +33,21 @@ angular.module('learndigest').controller('InternalCtrl', function ($scope) {
     //Add access to parent controller, playground is a variable
     vm.playground = $scope.$parent.vm;
 
-    //Access to force variable from playground controller
-    vm.secret = "shhhh" + vm.playground.force;
+    //watcher that watches force variable from parent controller
+/*    $scope.$watch('vm.playground.force', function () {
+        console.log('the force is strong', vm.playground.force);
+    });
+*/
+
+    //Destroy watcher after 3 watches
+    var watchesRemain = 3;
+
+    //To access the playground controller from internal controller as in index.html, we need to go two parents up
+    var watchDestroyer = $scope.$parent.$parent.$watch('vm.force', function () {
+        console.log('the force is strong', vm.playground.force);
+        watchesRemain--;
+        if (watchesRemain === 0) {
+            watchDestroyer();
+        }
+    });
 });
